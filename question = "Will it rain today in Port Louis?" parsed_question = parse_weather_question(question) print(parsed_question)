@@ -1,0 +1,3 @@
+question = "Will it rain today in Port Louis?"
+parsed_question = parse_weather_question(question)
+print(parsed_question)
