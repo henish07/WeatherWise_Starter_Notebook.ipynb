@@ -1,0 +1,21 @@
+def parse_weather_question(question):
+    parsed = parse(question)
+    intent = parsed.get('intent', '')
+
+    # If intent is empty, do some keyword matching as fallback
+    if not intent:
+        lowered = question.lower()
+        if 'rain' in lowered or 'umbrella' in lowered:
+            intent = 'rain'
+        elif 'cold' in lowered:
+            intent = 'cold'
+        elif 'picnic' in lowered or 'good day' in lowered:
+            intent = 'picnic'
+        elif 'wear' in lowered:
+            intent = 'wear'
+        else:
+            intent = 'unknown'
+    
+    # Return the parsed dict with ensured intent
+    parsed['intent'] = intent
+    return parsed
