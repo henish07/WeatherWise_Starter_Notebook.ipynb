@@ -1,0 +1,7 @@
+from hands_on_ai import parse
+
+def parse_weather_question(question):
+    """Extract location, time period, and intent from the user's question"""
+    # Use hands-on-ai to parse the question naturally
+    parsed = parse(question)
+    return parsed
