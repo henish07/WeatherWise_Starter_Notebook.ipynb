@@ -1,0 +1,7 @@
+from fetch_my_weather import WeatherWrapper
+
+def get_weather_data(location, days=2):
+    """Get weather data for the location using fetch-my-weather"""
+    wrapper = WeatherWrapper(location)
+    data = wrapper.get_weather(days=days)
+    return data
