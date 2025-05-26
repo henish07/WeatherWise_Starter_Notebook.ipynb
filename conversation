@@ -1,0 +1,14 @@
+User: How can I fetch weather data for a location using fetch-my-weather?
+
+AI: Use WeatherWrapper from fetch_my_weather. Here's a sample:
+
+from fetch_my_weather import WeatherWrapper
+weather = WeatherWrapper()
+data = weather.get_weather('Port Louis')
+print(data)
+
+User: Can you help me format the data to show the forecast for the next two days?
+
+AI: Sure! You can access the 'days' key in the data dictionary and loop through the first two days...
+
+User: Thanks! This helped me fetch and display weather data in my app.
