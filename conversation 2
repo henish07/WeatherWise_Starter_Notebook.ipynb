@@ -1,0 +1,13 @@
+User: How do I parse natural language weather questions using hands-on-ai?
+
+AI: Use parse() function from hands_on_ai to extract intent and entities.
+
+User: Some questions don’t get proper intent. How can I improve that?
+
+AI: Add fallback keyword matching for common intents like rain, cold, picnic, wear.
+
+User: Can you show me code for that?
+
+AI: Here’s the updated parse_weather_question() function with fallback logic...
+
+User: Great! This makes question parsing more reliable.
