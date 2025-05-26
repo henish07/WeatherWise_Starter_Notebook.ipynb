@@ -1,0 +1,10 @@
+questions = [
+    "Will it rain today in Port Louis?",
+    "Should I take an umbrella tomorrow?",
+    "Is it a good day for a picnic?",
+    "What should I wear today?",
+    "Will it be cold this weekend?"
+]
+
+for q in questions:
+    print(parse_weather_question(q))
