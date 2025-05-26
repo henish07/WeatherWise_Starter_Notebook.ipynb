@@ -1,0 +1,33 @@
+def generate_weather_response(parsed_question, weather_data):
+    intent = parsed_question.get('intent', '').lower()
+    conditions = [day['conditions'].lower() for day in weather_data['days']]
+    temps = [day['temperature'] for day in weather_data['days']]
+
+    will_rain = any('rain' in cond for cond in conditions)
+    is_cold = any(temp < 15 for temp in temps)
+    is_hot = any(temp > 25 for temp in temps)
+
+    if 'umbrella' in intent or 'rain' in intent:
+        if will_rain:
+            return "Yes, you should take an umbrella today."
+        else:
+            return "No, you likely won't need an umbrella today."
+    elif 'cold' in intent:
+        if is_cold:
+            return "It will be cold, dress warmly!"
+        else:
+            return "It won't be very cold today."
+    elif 'picnic' in intent or 'good day' in intent:
+        if will_rain:
+            return "It might rain, so not the best day for a picnic."
+        else:
+            return "Great weather for a picnic!"
+    elif 'wear' in intent:
+        if is_cold:
+            return "Wear warm clothes today."
+        elif is_hot:
+            return "It's warm, dress lightly."
+        else:
+            return "The weather is mild, dress comfortably."
+    else:
+        return "Sorry, I can't answer that question yet."
