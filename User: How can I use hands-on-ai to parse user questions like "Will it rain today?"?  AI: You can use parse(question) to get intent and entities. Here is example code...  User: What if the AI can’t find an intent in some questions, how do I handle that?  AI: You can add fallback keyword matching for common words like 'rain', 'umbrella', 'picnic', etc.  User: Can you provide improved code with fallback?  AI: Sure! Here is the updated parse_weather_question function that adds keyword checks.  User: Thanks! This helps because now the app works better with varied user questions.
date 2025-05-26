@@ -1,0 +1,13 @@
+User: How can I use hands-on-ai to parse user questions like "Will it rain today?"?
+
+AI: You can use parse(question) to get intent and entities. Here is example code...
+
+User: What if the AI can’t find an intent in some questions, how do I handle that?
+
+AI: You can add fallback keyword matching for common words like 'rain', 'umbrella', 'picnic', etc.
+
+User: Can you provide improved code with fallback?
+
+AI: Sure! Here is the updated parse_weather_question function that adds keyword checks.
+
+User: Thanks! This helps because now the app works better with varied user questions.
