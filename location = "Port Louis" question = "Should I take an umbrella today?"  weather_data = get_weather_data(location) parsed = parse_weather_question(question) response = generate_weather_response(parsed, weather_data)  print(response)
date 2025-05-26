@@ -1,0 +1,8 @@
+location = "Port Louis"
+question = "Should I take an umbrella today?"
+
+weather_data = get_weather_data(location)
+parsed = parse_weather_question(question)
+response = generate_weather_response(parsed, weather_data)
+
+print(response)
