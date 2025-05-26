@@ -1,0 +1,64 @@
+import pyinputplus as pyip
+from fetch_my_weather import WeatherWrapper
+from hands_on_ai import parse
+
+# Store user's location globally
+user_location = None
+
+def get_weather_data(location, days=2):
+    wrapper = WeatherWrapper(location)
+    data = wrapper.get_weather(days=days)
+    return data
+
+def parse_weather_question(question):
+    parsed = parse(question)
+    return parsed
+
+def generate_weather_response(parsed_question, weather_data):
+    intent = parsed_question.get('intent', '').lower()
+    will_rain = False
+    for day in weather_data['days']:
+        if 'rain' in day['conditions'].lower():
+            will_rain = True
+    
+    if 'umbrella' in intent or 'rain' in intent:
+        if will_rain:
+            return "Yes, you should take an umbrella today."
+        else:
+            return "No, you likely won't need an umbrella today."
+    elif 'cold' in intent:
+        temps = [day['temperature'] for day in weather_data['days']]
+        if any(temp < 15 for temp in temps):
+            return "It will be cold, dress warmly!"
+        else:
+            return "It won't be very cold today."
+    else:
+        return "Sorry, I can't answer that question yet."
+
+def main_menu():
+    global user_location
+
+    while True:
+        print("\n=== WeatherWise Menu ===")
+        choice = pyip.inputMenu(['Enter Location', 'Ask Weather Question', 'Exit'], numbered=True)
+
+        if choice == 'Enter Location':
+            user_location = input("Enter your city or town: ")
+            print(f"✅ Location set to: {user_location}")
+
+        elif choice == 'Ask Weather Question':
+            if not user_location:
+                print("⚠️ Please enter your location first.")
+                continue
+            question = input("Ask your weather question (e.g., 'Will it rain today?'): ")
+            parsed = parse_weather_question(question)
+            weather_data = get_weather_data(user_location)
+            response = generate_weather_response(parsed, weather_data)
+            print(f"🤖 WeatherWise says: {response}")
+
+        elif choice == 'Exit':
+            print("👋 Goodbye!")
+            break
+
+# Run the app
+main_menu()
