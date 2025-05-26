@@ -1,0 +1,30 @@
+import pyinputplus as pyip
+
+# We'll store the user's location here
+user_location = None
+
+def main_menu():
+    global user_location
+
+    while True:
+        print("\n=== WeatherWise Menu ===")
+        choice = pyip.inputMenu(['Enter Location', 'Ask Weather Question', 'Exit'], numbered=True)
+
+        if choice == 'Enter Location':
+            user_location = input("Enter your city or town: ")
+            print(f"✅ Location set to: {user_location}")
+
+        elif choice == 'Ask Weather Question':
+            if not user_location:
+                print("⚠️ Please enter your location first.")
+                continue
+            question = input("Ask your weather question (e.g., 'Will it rain today?'): ")
+            print(f"You asked: {question}")
+            # We'll connect this to weather + AI later
+
+        elif choice == 'Exit':
+            print("👋 Goodbye!")
+            break
+
+# Run the menu
+main_menu()
