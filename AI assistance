@@ -1,0 +1,13 @@
+User: How can I create a simple menu in Python for entering location, asking questions, and exiting?
+
+AI: Use pyinputplus’s inputMenu for easy menus.
+
+User: How do I make sure the user can’t ask questions before setting location?
+
+AI: Add a check for location being None and prompt user accordingly.
+
+User: Can you show me a full example?
+
+AI: Here’s a menu loop that handles location input, question input, and exit option...
+
+User: Thanks! This improved user experience in my app.
