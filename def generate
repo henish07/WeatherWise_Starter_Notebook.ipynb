@@ -1,0 +1,29 @@
+def generate_weather_response(parsed_question, weather_data):
+    """
+    Create a helpful answer based on the parsed question and weather data.
+    Example: if the question is about rain, respond if rain is expected.
+    """
+    # Example logic - you can expand this as you learn more!
+    
+    intent = parsed_question.get('intent', '').lower()
+    # Example intents could be: 'rain', 'umbrella', 'cold', 'picnic', 'wear'
+    
+    # For simplicity, let's check if the weather_data mentions rain
+    will_rain = False
+    for day in weather_data['days']:
+        if 'rain' in day['conditions'].lower():
+            will_rain = True
+    
+    if 'umbrella' in intent or 'rain' in intent:
+        if will_rain:
+            return "Yes, you should take an umbrella today."
+        else:
+            return "No, you likely won't need an umbrella today."
+    elif 'cold' in intent:
+        temps = [day['temperature'] for day in weather_data['days']]
+        if any(temp < 15 for temp in temps):
+            return "It will be cold, dress warmly!"
+        else:
+            return "It won't be very cold today."
+    else:
+        return "Sorry, I can't answer that question yet."
